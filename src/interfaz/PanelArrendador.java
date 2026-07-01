@@ -53,9 +53,12 @@ public class PanelArrendador extends JPanel {
         tabs.addTab("Mis apartamentos", crearPanelMisApartamentos());
 
         modeloSolicitudesRecibidas = new DefaultTableModel(
-                new Object[]{"ID", "Buscador", "Apartamento", "Sector", "Fecha", "Estado",
-                        "Presupuesto", "Ocupacion", "Horario", "Mascotas", "Ruido", "Orden"}, 0) {
-            public boolean isCellEditable(int row, int col) { return false; }
+                new Object[]{"ID", "Buscador", "Telefono", "Apartamento", "Sector", "Fecha", "Estado", "Presupuesto", "Ocupacion", "Horario", "Mascotas", "Ruido", "Orden"},
+                0
+        ) {
+            public boolean isCellEditable(int row, int col) {
+                return false;
+            }
         };
         tabs.addTab("Solicitudes recibidas", crearPanelSolicitudesRecibidas());
 
@@ -433,11 +436,19 @@ public class PanelArrendador extends JPanel {
             if (!CUALQUIERA.equals(fOrden) && !b.getOrden().equals(fOrden)) continue;
 
             modeloSolicitudesRecibidas.addRow(new Object[]{
-                    s.getId(), b.getNombre(),
-                    s.getApartamento().getDireccion(), s.getApartamento().getSector(),
-                    s.getFecha(), s.getEstado(),
-                    String.format("$%.2f", b.getPresupuesto()), b.getOcupacion(), b.getHorario(),
-                    b.isMascotas() ? "Si" : "No", b.getRuido(), b.getOrden()
+                    s.getId(),
+                    b.getNombre(),
+                    b.getTelefono(),
+                    s.getApartamento().getDireccion(),
+                    s.getApartamento().getSector(),
+                    s.getFecha(),
+                    s.getEstado(),
+                    String.format("$%.2f", b.getPresupuesto()),
+                    b.getOcupacion(),
+                    b.getHorario(),
+                    b.isMascotas() ? "Si" : "No",
+                    b.getRuido(),
+                    b.getOrden()
             });
         }
     }
