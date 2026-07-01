@@ -35,9 +35,6 @@ public class PanelAdmin extends JPanel {
 
         JTabbedPane tabs = new JTabbedPane();
 
-        // --- Tab: Registrar apartamento ---
-        tabs.addTab("Registrar apartamento", crearPanelRegistrarApartamento());
-
         // --- Tab: Apartamentos disponibles ---
         modeloDisponibles = new DefaultTableModel(
                 new Object[]{"ID", "Direccion", "Sector", "Precio", "Habitaciones", "Mascotas", "Publicado", "Expira"}, 0) {
