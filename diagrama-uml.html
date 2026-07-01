@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Diagrama UML - RoommateRadar</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+        padding: 24px;
+    }
+    h1 {
+        text-align: center;
+        color: #2c3e50;
+    }
+    .contenedor {
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        padding: 24px;
+        overflow-x: auto;
+    }
+    .mermaid {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+</head>
+<body>
+
+<h1>Diagrama UML de clases - RoommateRadar</h1>
+
+<div class="contenedor">
+<div class="mermaid">
+classDiagram
+    class Usuario {
+        -String usuario
+        -String clave
+        -String nombre
+        -String telefono
+        -String correo
+        -String rol
+        -boolean activo
+        +getUsuario() String
+        +getClave() String
+        +getNombre() String
+        +getRol() String
+        +isActivo() boolean
+    }
+
+    class Buscador {
+        -double presupuesto
+        -String ocupacion
+        -String horario
+        -boolean mascotas
+        -String ruido
+        -String orden
+        +getPresupuesto() double
+        +isMascotas() boolean
+    }
+
+    class Arrendador {
+    }
+
+    class Apartamento {
+        -int id
+        -String direccion
+        -String sector
+        -double precio
+        -int habitaciones
+        -String propietario
+        -String estado
+        -LocalDate fechaPublicacion
+        -LocalDate fechaExpiracion
+        +estaPublicacionVigente() boolean
+        +estaPublicacionVencida() boolean
+        +estaDisponibleParaSolicitud() boolean
+        +renovarPublicacion() void
+    }
+
+    class SolicitudConvivencia {
+        -int id
+        -LocalDate fecha
+        -String estado
+        +getEstado() String
+        +setEstado(String) void
+    }
+
+    class SolicitudBusqueda {
+        -int id
+        -String sectorDeseado
+        -double presupuestoMaximo
+        -int habitacionesNecesarias
+        -boolean aceptaMascotas
+        -String horarioPreferido
+        -LocalDate fechaCreacion
+        -String estado
+    }
+
+    class SistemaRoommateRadar {
+        -List~Usuario~ usuarios
+        -List~Apartamento~ apartamentos
+        -List~SolicitudConvivencia~ solicitudesConvivencia
+        -List~SolicitudBusqueda~ solicitudesBusqueda
+        -Usuario activo
+        +login(String, String) Usuario
+        +estaBaneado(String, String) boolean
+        +registrarBuscador(Buscador) boolean
+        +registrarArrendador(Arrendador) boolean
+        +eliminarUsuario(String) String
+        +cambiarEstadoUsuario(String) String
+        +registrarApartamento(Apartamento) void
+        +editarApartamento(int, ...) String
+        +darDeBajaApartamento(int) String
+        +getDisponiblesParaBuscador(Buscador) List~Apartamento~
+        +getApartamentosDeArrendador(String) List~Apartamento~
+        +enviarSolicitud(Buscador, int) String
+        +aceptarSolicitud(int) String
+        +rechazarSolicitud(int) String
+        +getSolicitudesDeArrendador(String) List~SolicitudConvivencia~
+        +registrarSolicitudBusqueda(...) String
+        +editarSolicitudBusqueda(...) String
+        +cancelarSolicitudBusqueda(int, String) String
+        +renovarPublicacionApartamento(int) String
+    }
+
+    class Main {
+        +main(String[]) void
+    }
+
+    class VentanaPrincipal {
+        -SistemaRoommateRadar sistema
+        +mostrarLogin() void
+        +mostrarRegistro() void
+        +mostrarAdmin() void
+        +mostrarBuscador(Buscador) void
+        +mostrarArrendador(Arrendador) void
+        +cerrarSesion() void
+    }
+
+    class PanelLogin {
+        +iniciarSesion() void
+    }
+
+    class PanelRegistro {
+        +registrar() void
+    }
+
+    class PanelAdmin {
+        +refrescarTodo() void
+    }
+
+    class PanelBuscador {
+        +iniciarSesionComo(Buscador) void
+    }
+
+    class PanelArrendador {
+        +iniciarSesionComo(Arrendador) void
+    }
+
+    Usuario <|-- Buscador
+    Usuario <|-- Arrendador
+
+    SistemaRoommateRadar "1" o-- "*" Usuario
+    SistemaRoommateRadar "1" o-- "*" Apartamento
+    SistemaRoommateRadar "1" o-- "*" SolicitudConvivencia
+    SistemaRoommateRadar "1" o-- "*" SolicitudBusqueda
+
+    SolicitudConvivencia --> Buscador
+    SolicitudConvivencia --> Apartamento
+    SolicitudBusqueda --> Buscador
+    Apartamento --> Usuario : propietario (String, usuario de Arrendador)
+
+    Main --> VentanaPrincipal
+    VentanaPrincipal *-- PanelLogin
+    VentanaPrincipal *-- PanelRegistro
+    VentanaPrincipal *-- PanelAdmin
+    VentanaPrincipal *-- PanelBuscador
+    VentanaPrincipal *-- PanelArrendador
+    VentanaPrincipal --> SistemaRoommateRadar
+
+    PanelLogin --> SistemaRoommateRadar
+    PanelRegistro --> SistemaRoommateRadar
+    PanelAdmin --> SistemaRoommateRadar
+    PanelBuscador --> SistemaRoommateRadar
+    PanelArrendador --> SistemaRoommateRadar
+</div>
+</div>
+
+<script>
+    mermaid.initialize({ startOnLoad: true, theme: "default" });
+</script>
+
+</body>
+</html>

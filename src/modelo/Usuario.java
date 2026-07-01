@@ -8,6 +8,7 @@ public class Usuario {
     private String telefono;
     private String correo;
     private String rol;
+    private boolean activo;
 
     public Usuario(String usuario, String clave, String nombre,
                    String telefono, String correo, String rol) {
@@ -17,6 +18,7 @@ public class Usuario {
         this.telefono = telefono;
         this.correo = correo;
         this.rol = rol;
+        this.activo = true;
     }
 
     public String getUsuario() {
@@ -65,5 +67,13 @@ public class Usuario {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }

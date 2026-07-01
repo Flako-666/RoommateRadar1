@@ -11,11 +11,12 @@ public class Apartamento {
     private int habitaciones;
     private String propietario;
     private String estado;
+    private boolean aceptaMascotas;
     private LocalDate fechaPublicacion;
     private LocalDate fechaExpiracion;
 
     public Apartamento(int id, String direccion, String sector, double precio,
-                       int habitaciones, String propietario) {
+                       int habitaciones, String propietario, boolean aceptaMascotas) {
 
         this.id = id;
         this.direccion = direccion;
@@ -23,6 +24,7 @@ public class Apartamento {
         this.precio = precio;
         this.habitaciones = habitaciones;
         this.propietario = propietario;
+        this.aceptaMascotas = aceptaMascotas;
         this.estado = "DISPONIBLE";
         this.fechaPublicacion = LocalDate.now();
         this.fechaExpiracion = this.fechaPublicacion.plusDays(30);
@@ -82,6 +84,14 @@ public class Apartamento {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public boolean isAceptaMascotas() {
+        return aceptaMascotas;
+    }
+
+    public void setAceptaMascotas(boolean aceptaMascotas) {
+        this.aceptaMascotas = aceptaMascotas;
     }
 
     public LocalDate getFechaPublicacion() {

@@ -1,10 +1,12 @@
 package principal;
 
-import interfaz.ConsolaRoommateRadar;
+import interfaz.VentanaPrincipal;
+
+import javax.swing.SwingUtilities;
 
 public class Main {
 
     public static void main(String[] args) {
-        new ConsolaRoommateRadar().iniciar();
+        SwingUtilities.invokeLater(() -> new VentanaPrincipal().setVisible(true));
     }
 }
