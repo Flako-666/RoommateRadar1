@@ -47,7 +47,7 @@ public class PanelArrendador extends JPanel {
         tabs.addTab("Registrar apartamento", crearPanelRegistrarApartamento());
 
         modeloMisApartamentos = new DefaultTableModel(
-                new Object[]{"ID", "Direccion", "Sector", "Precio", "Habitaciones", "Mascotas", "Estado", "Publicacion", "Publicado", "Expira"}, 0) {
+                new Object[]{"ID", "Direccion", "Sector", "Precio", "Habitaciones","Mascotas", "Estado", "Publicacion", "Publicado", "Expira"}, 0) {
             public boolean isCellEditable(int row, int col) { return false; }
         };
         tabs.addTab("Mis apartamentos", crearPanelMisApartamentos());
